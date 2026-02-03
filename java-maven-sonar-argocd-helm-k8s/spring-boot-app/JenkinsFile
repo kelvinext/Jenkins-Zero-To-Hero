@@ -74,8 +74,8 @@ pipeline {
                 git push https://${GITHUB_TOKEN}@github.com/kelvinext/Jenkins-Zero-To-Hero.git
             '''
         }
+    
     }
-}
 
 
     }
