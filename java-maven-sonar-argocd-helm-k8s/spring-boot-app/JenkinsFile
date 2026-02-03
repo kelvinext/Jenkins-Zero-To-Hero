@@ -71,8 +71,9 @@ pipeline {
           sh '''
             set -e
 
-            git config user.email "kelvinpradhan18@gmail.com"
-            git config user.name "kelvinext"
+            git config --global user.email "kelvinpradhan18@gmail.com"
+            git config --global user.name "kelvinext"
+            git config --global --list
 
             cd java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests
 
