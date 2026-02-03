@@ -50,8 +50,6 @@ pipeline {
             GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
             GIT_USER_NAME = "kelvinext"
         }
-stage('Update Deployment File') {
-    steps {
         checkout scm   // 🔥 THIS WAS MISSING
 
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
