@@ -71,7 +71,7 @@ pipeline {
           sh '''
             set -e
 
-            # 🔐 Fix Git "dubious ownership" (Jenkins + Docker issue)
+            # 🔐 Fix Git "dubious ownership"
             git config --global --add safe.directory /var/lib/jenkins/workspace/ultimate-demo
 
             git config --global user.email "kelvinpradhan18@gmail.com"
@@ -79,12 +79,16 @@ pipeline {
 
             cd java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests
 
+            # ✅ FIX: attach HEAD to main branch
+            git checkout main
+
             sed -i "s|image: .*|image: kelvinpradhan/ultimate-cicd:${BUILD_NUMBER}|g" deployment.yml
 
             git add deployment.yml
-            git commit -m "Update image tag to ${BUILD_NUMBER}" || echo "No changes to commit"
+            git commit -m "Update image tag to ${BUILD_NUMBER}" || echo "No changes"
 
             git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
+
           '''
         }
       }
